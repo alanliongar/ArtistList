@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -76,10 +77,36 @@ class MainActivity : ComponentActivity() {
                         R.drawable.ic_vincent_van_gogh,
                         R.drawable.ic_starry_night
                     )
-                    val artists = listOf(vanGogh, picasso, salvador, leonardo)
+                    val artists = listOf(
+                        vanGogh,
+                        picasso,
+                        salvador,
+                        leonardo,
+                        vanGogh,
+                        picasso,
+                        salvador,
+                        leonardo,
+                        vanGogh,
+                        picasso,
+                        salvador,
+                        leonardo,
+                        vanGogh,
+                        picasso,
+                        salvador,
+                        leonardo,
+                        vanGogh,
+                        picasso,
+                        salvador,
+                        leonardo
+                    )
                     LazyColumn {
-                        items(items = artists) { artist ->
-                            ArtistCard(artist = artist)
+                        items(artists) { artist ->
+                            ArtistCard(
+                                artist,
+                                onClick = {
+                                    println("Alan teste " + artist.name)
+                                }
+                            )
                         }
                     }
                 }
@@ -89,8 +116,15 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ArtistCard(artist: Artist) {
-    Column(modifier = Modifier.padding(8.dp)) {
+fun ArtistCard(
+    artist: Artist,
+    onClick: () -> Unit,
+) {
+    Column(
+        modifier = Modifier
+            .padding(8.dp)
+            .clickable(onClick = onClick)
+    ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
                 modifier = Modifier
@@ -140,6 +174,6 @@ fun ArtistCardPreview() {
             R.drawable.ic_leonardo_da_vinci,
             R.drawable.ic_mona_lisa
         )
-        ArtistCard(artist)
+        ArtistCard(artist, onClick = {})
     }
 }
