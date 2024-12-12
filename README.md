@@ -1,11 +1,11 @@
 # Artist List
-Esse projeto é um aplicativo Android nativo desenvolvido com a lingagem de programação Kotlin, criado para aprender princípios básicos da nova UI toolkit Compose.
+This project is a native Android application developed using the Kotlin programming language, designed to learn the basic principles of the UI toolkit Jetpack Compose.
 
 ## :camera_flash: Screenshots
 <!-- You can add more screenshots here if you like -->
 <img src="https://github.com/ComunidadeDevSpace/ComposeInit/assets/11612508/4def44a9-b377-4e9c-b3b7-19cec8599e6d" width=260/>
 
-## Tecnologias
+## Technologies
 - 100% Kotlin
 - Compose
   - Column
@@ -20,7 +20,7 @@ Esse projeto é um aplicativo Android nativo desenvolvido com a lingagem de prog
 ```
 The MIT License (MIT)
 
-Copyright (c) 2024 Roque Buarque Junior
+Copyright (c) 2024 Alan Lucindo Gomes
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in
