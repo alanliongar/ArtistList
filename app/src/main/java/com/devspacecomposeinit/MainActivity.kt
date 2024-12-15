@@ -42,138 +42,20 @@ import com.devspacecomposeinit.R
 import com.devspacecomposeinit.ui.theme.ComposeInitTheme
 
 
-//oi
+
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //enableEdgeToEdge()
+        enableEdgeToEdge()
         setContent {
             ComposeInitTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    val leonardo = Artist(
-                        "Leonardo Da Vinci",
-                        "3 minutes ago",
-                        R.drawable.ic_leonardo_da_vinci,
-                        R.drawable.ic_mona_lisa
-                    )
-                    val picasso = Artist(
-                        "Pablo Picasso",
-                        "5 minutes ago",
-                        R.drawable.ic_pablo_picasso,
-                        R.drawable.ic_beijo
-                    )
-                    val salvador = Artist(
-                        "Salvador Dali",
-                        "7 minutes ago",
-                        R.drawable.ic_salvador_dali,
-                        R.drawable.ic_persistence_of_memory
-                    )
-                    val vanGogh = Artist(
-                        "Vincent Van Gogh",
-                        "10 minutes ago",
-                        R.drawable.ic_vincent_van_gogh,
-                        R.drawable.ic_starry_night
-                    )
-                    val artists = listOf(
-                        vanGogh,
-                        picasso,
-                        salvador,
-                        leonardo,
-                        vanGogh,
-                        picasso,
-                        salvador,
-                        leonardo,
-                        vanGogh,
-                        picasso,
-                        salvador,
-                        leonardo,
-                        vanGogh,
-                        picasso,
-                        salvador,
-                        leonardo,
-                        vanGogh,
-                        picasso,
-                        salvador,
-                        leonardo
-                    )
-                    LazyColumn {
-                        items(artists) { artist ->
-                            ArtistCard(
-                                artist,
-                                onClick = {
-                                    println("Alan teste " + artist.name)
-                                }
-                            )
-                        }
-                    }
+                    ArtistListScreen()
                 }
             }
         }
-    }
-}
-
-@Composable
-fun ArtistCard(
-    artist: Artist,
-    onClick: () -> Unit,
-) {
-    Column(
-        modifier = Modifier
-            .padding(8.dp)
-            .clickable(onClick = onClick)
-    ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Image(
-                modifier = Modifier
-                    .size(60.dp)
-                    .clip(CircleShape),
-                contentScale = ContentScale.FillWidth,
-                painter = painterResource(id = artist.image),
-                contentDescription = "Artist Image"
-            )
-            Spacer(modifier = Modifier.size(16.dp))
-            Column {
-                Text(text = artist.name, fontSize = 18.sp, fontWeight = SemiBold)
-                Text(artist.lastSeenOnline, color = Color.Gray)
-            }
-        }
-        Card(
-            modifier = Modifier.padding(8.dp),
-            elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
-        ) {
-            Image(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(200.dp),
-                contentScale = ContentScale.Crop,
-                painter = painterResource(id = artist.art),
-                contentDescription = "Artist Art",
-            )
-
-        }
-    }
-}
-
-data class Artist(
-    val name: String,
-    val lastSeenOnline: String,
-    @DrawableRes val image: Int,
-    @DrawableRes val art: Int,
-)
-
-@Preview
-@Composable
-fun ArtistCardPreview() {
-    ComposeInitTheme {
-        val artist = Artist(
-            "Leonardo Da Vinci",
-            "3 minutes ago",
-            R.drawable.ic_leonardo_da_vinci,
-            R.drawable.ic_mona_lisa
-        )
-        ArtistCard(artist, onClick = {})
     }
 }
