@@ -46,14 +46,14 @@ import com.devspacecomposeinit.ui.theme.ComposeInitTheme
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        //enableEdgeToEdge()
         setContent {
             ComposeInitTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    ArtistListScreen()
+                    App()
                 }
             }
         }

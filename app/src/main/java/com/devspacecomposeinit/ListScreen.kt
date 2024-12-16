@@ -26,19 +26,22 @@ import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.devspacecomposeinit.ui.theme.ComposeInitTheme
 
 @Composable
-fun ArtistListScreen() {
+fun ArtistListScreen(navController: NavController) {
     val repository = ListRepository()
     val artists = repository.getArtistList()
-    ArtistList(artistList = artists)
+    ArtistList(artistList = artists) { artist ->
+        navController.navigate(route = "artistDetail/${artist.id}")
+    }
 }
 
 @Composable
 fun ArtistCard(
     artist: Artist,
-    onClick: () -> Unit,
+    onClick: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -78,13 +81,16 @@ fun ArtistCard(
 }
 
 @Composable
-fun ArtistList(artistList: List<Artist>) {
+fun ArtistList(
+    artistList: List<Artist>,
+    onClick: (Artist) -> Unit
+) {
     LazyColumn {
         items(artistList) { artist ->
             ArtistCard(
                 artist,
                 onClick = {
-                    println("Alan teste " + artist.name)
+                    onClick.invoke(artist)
                 }
             )
         }
@@ -96,7 +102,9 @@ fun ArtistList(artistList: List<Artist>) {
 fun ArtistCardPreview() {
     ComposeInitTheme {
         val artist = Artist(
+            id = 1,
             "Leonardo Da Vinci",
+            description = "(1452 - 1519) - Italian Renaissance artist and scientist, known for works like Mona Lisa and The Last Supper. A master of painting, anatomy, engineering, and inventions, he symbolizes the ideal of the Renaissance 'universal man.' His curious mind explored the natural world and human potential.",
             "3 minutes ago",
             R.drawable.ic_leonardo_da_vinci,
             R.drawable.ic_mona_lisa
