@@ -19,7 +19,7 @@ fun App() {
             arguments = listOf(navArgument("itemId") { type = NavType.IntType })
         ) { backStackEntry ->
             val artistId = requireNotNull(backStackEntry.arguments?.getInt("itemId"))
-            ArtistDetailScreen(artistId = artistId)
+            ArtistDetailScreen(artistId = artistId, navController = navController)
         }
     }
 }

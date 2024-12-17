@@ -5,6 +5,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,19 +23,32 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.font.FontWeight.Companion.SemiBold
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.devspacecomposeinit.designsystem.TitleLargeText
+import com.devspacecomposeinit.designsystem.TitleSmallText
 import com.devspacecomposeinit.ui.theme.ComposeInitTheme
 
 @Composable
 fun ArtistListScreen(navController: NavController) {
     val repository = ListRepository()
     val artists = repository.getArtistList()
-    ArtistList(artistList = artists) { artist ->
-        navController.navigate(route = "artistDetail/${artist.id}")
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp)
+    ) {
+        TitleLargeText(
+            "Artist List App", Modifier.align(Alignment.CenterHorizontally)
+        )
+        Spacer(
+            Modifier
+                .size(8.dp)
+        )
+        ArtistList(artistList = artists) { artist ->
+            navController.navigate(route = "artistDetail/${artist.id}")
+        }
     }
 }
 
@@ -59,7 +73,7 @@ fun ArtistCard(
             )
             Spacer(modifier = Modifier.size(16.dp))
             Column {
-                Text(text = artist.name, fontSize = 18.sp, fontWeight = SemiBold)
+                TitleSmallText(text = artist.name)
                 Text(artist.lastSeenOnline, color = Color.Gray)
             }
         }
