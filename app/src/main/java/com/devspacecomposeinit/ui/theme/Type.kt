@@ -9,6 +9,9 @@ import androidx.compose.ui.text.font.FontWeight.Companion.Bold
 import androidx.compose.ui.unit.sp
 import com.devspacecomposeinit.R
 
+val detaildescriptionFontFamily = FontFamily(
+    Font(R.font.greatvibes_regular, FontWeight.Bold)
+)
 
 val conforterbrushFontFamily = FontFamily(
     Font(R.font.comforterbrush, FontWeight.Bold)
@@ -35,6 +38,14 @@ val Typography = Typography(
     titleLarge = TextStyle(
         fontSize = 58.sp, fontWeight = Bold,
         fontFamily = conforterbrushFontFamily
+    ),
+    titleMedium = TextStyle(
+        fontSize = 58.sp, fontWeight = Bold,
+        fontFamily = conforterbrushFontFamily
+    ),
+    bodyMedium = TextStyle(
+        fontSize = 36.sp,
+        fontFamily = detaildescriptionFontFamily
     )
     /* Other default text styles to override
     titleLarge = TextStyle(

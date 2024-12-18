@@ -6,13 +6,13 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.devspacecomposeinit.designsystem.ToolbarWithBackButton
+import com.devspacecomposeinit.designsystem.bodyMediumText
 import com.devspacecomposeinit.ui.theme.ComposeInitTheme
 
 @Composable
@@ -39,10 +39,7 @@ private fun ArtistDetailContent(
     Column(modifier = modifier.fillMaxSize()) {
         ArtistCard(artist = artist, onClick = {})
         Spacer(modifier = Modifier.size(8.dp))
-        Text(
-            modifier = Modifier.padding(16.dp),
-            text = artist.description
-        )
+        bodyMediumText(artist.description, modifier = Modifier.padding(16.dp))
     }
 }
 
