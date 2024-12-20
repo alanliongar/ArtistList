@@ -13,8 +13,8 @@ import androidx.compose.ui.unit.dp
 import com.devspacecomposeinit.ui.theme.ComposeInitTheme
 
 @Composable
-fun TitleSmallText(text: String) {
-    Text(text = text, style = MaterialTheme.typography.titleSmall)
+fun TitleSmallText(modifier: Modifier = Modifier, text: String) {
+    Text(modifier = modifier, text = text, style = MaterialTheme.typography.titleSmall)
 }
 
 @Composable
@@ -49,7 +49,7 @@ fun TypographyPreview() {
         Column() {
             TitleLargeText("Title Large Text")
             Spacer(modifier = Modifier.padding(16.dp))
-            TitleSmallText("Title Small Text")
+            //TitleSmallText("Title Small Text")
         }
     }
 }

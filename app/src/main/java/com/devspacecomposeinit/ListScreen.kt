@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -29,6 +30,9 @@ import androidx.navigation.NavController
 import com.devspacecomposeinit.designsystem.TitleLargeText
 import com.devspacecomposeinit.designsystem.TitleSmallText
 import com.devspacecomposeinit.ui.theme.ComposeInitTheme
+
+const val ARTIST_LIST_NAME_TAG = "ARTIST_LIST_NAME_TAG"
+const val ARTIST_LAST_SEEN_TAG = "ARTIST_LAST_SEEN_TAG"
 
 @Composable
 fun ArtistListScreen(navController: NavController) {
@@ -46,8 +50,25 @@ fun ArtistListScreen(navController: NavController) {
             Modifier
                 .size(8.dp)
         )
-        ArtistList(artistList = artists) { artist ->
+        ArtistListContent(artistList = artists) { artist ->
             navController.navigate(route = "artistDetail/${artist.id}")
+        }
+    }
+}
+
+@Composable
+fun ArtistListContent(
+    artistList: List<Artist>,
+    onClick: (Artist) -> Unit
+) {
+    LazyColumn {
+        items(artistList) { artist ->
+            ArtistCard(
+                artist,
+                onClick = {
+                    onClick.invoke(artist)
+                }
+            )
         }
     }
 }
@@ -73,8 +94,15 @@ fun ArtistCard(
             )
             Spacer(modifier = Modifier.size(16.dp))
             Column {
-                TitleSmallText(text = artist.name)
-                Text(artist.lastSeenOnline, color = Color.Gray)
+                TitleSmallText(
+                    modifier = Modifier.testTag(ARTIST_LIST_NAME_TAG + artist.id),
+                    text = artist.name
+                )
+                Text(
+                    modifier = Modifier.testTag(ARTIST_LAST_SEEN_TAG + artist.id),
+                    text = artist.lastSeenOnline,
+                    color = Color.Gray
+                )
             }
         }
         Card(
@@ -89,27 +117,10 @@ fun ArtistCard(
                 painter = painterResource(id = artist.art),
                 contentDescription = "Artist Art",
             )
-
         }
     }
 }
 
-@Composable
-fun ArtistList(
-    artistList: List<Artist>,
-    onClick: (Artist) -> Unit
-) {
-    LazyColumn {
-        items(artistList) { artist ->
-            ArtistCard(
-                artist,
-                onClick = {
-                    onClick.invoke(artist)
-                }
-            )
-        }
-    }
-}
 
 @Preview
 @Composable
